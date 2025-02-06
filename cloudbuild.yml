@@ -1,7 +1,7 @@
 steps:
   - name: "gcr.io/cloud-builders/docker"
-    args:
-      [
+    entrypoint: "bash"
+    args: [
         "build",
         "-t", "us-east1-docker.pkg.dev/microservices-store-449702/registry-image/orders-ms-prd:latest",
         "-f", "dockerfile.prod",
@@ -17,7 +17,6 @@ steps:
         "push",
         "us-east1-docker.pkg.dev/microservices-store-449702/registry-image/orders-ms-prd:latest",
       ]
-
 options:
   logging: CLOUD_LOGGING_ONLY
 
