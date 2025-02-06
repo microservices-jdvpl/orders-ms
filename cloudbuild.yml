@@ -2,16 +2,21 @@ steps:
   - name: "gcr.io/cloud-builders/docker"
     entrypoint: "bash"
     args:
-      - -c
-      - |
-        us-east1-docker.pkg.dev/microservices-store-449702/registry-image/orders-ms-prd -f dockerfile.prod --platform=linux/amd64 --build-arg ORDERS_DATABASE_URL=$$DATABASE_URL .
+      [
+        "build",
+        "-t", "us-east1-docker.pkg.dev/microservices-store-449702/registry-image/orders-ms-prd:latest",
+        "-f", "dockerfile.prod",
+        "--platform=linux/amd64",
+        "--build-arg", "ORDERS_DATABASE_URL=$$DATABASE_URL",
+        "."
+      ]
     secretEnv: ["DATABASE_URL"]
 
   - name: "gcr.io/cloud-builders/docker"
     args:
       [
         "push",
-        "us-east1-docker.pkg.dev/microservices-store-449702/registry-image/orders-ms-prd",
+        "us-east1-docker.pkg.dev/microservices-store-449702/registry-image/orders-ms-prd:latest",
       ]
 options:
   logging: CLOUD_LOGGING_ONLY
