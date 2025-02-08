@@ -1,8 +1,6 @@
 # Dockerfile de products-ms
-FROM node:18-slim
+FROM node:22-alpine3.20
 
-# Instalar OpenSSL
-RUN apt-get update && apt-get install -y openssl
 
 # Crear directorio de trabajo
 WORKDIR /usr/src/app
