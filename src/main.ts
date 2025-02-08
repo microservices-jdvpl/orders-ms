@@ -22,6 +22,7 @@ async function bootstrap() {
     }),
   );
   await app.listen();
+  logger.log(`Orders MS is running with NATS on ${envs.NATS_SERVERS}`);
   logger.log(`Ms is running `);
 }
 bootstrap();
